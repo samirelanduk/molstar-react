@@ -1,0 +1,23 @@
+{
+  "name": "molstar-react",
+  "version": "0.0.0",
+  "description": "Molstar as a react component",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samirelanduk/molstar-react.git"
+  },
+  "keywords": [
+    "molstar",
+    "bioinformatics"
+  ],
+  "author": "Sam Ireland",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/samirelanduk/molstar-react/issues"
+  },
+  "homepage": "https://github.com/samirelanduk/molstar-react#readme"
+}
