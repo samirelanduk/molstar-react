@@ -5,7 +5,7 @@ A react component for adding the [Molstar Macromolecular Visualiser](https://git
 To use:
 
 ```jsx
-import { Molstar } from "molstar-react";
+import Molstar from "molstar-react";
 
 export const App = () => {
 
