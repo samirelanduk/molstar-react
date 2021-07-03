@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "description": "Molstar as a react component",
   "main": "lib/index.js",
+  "files": ["dist"],
   "scripts": {
     "build": "rollup -c",
-    "watch": "rollup -c --watch"
+    "start": "rollup -c --watch"
   },
   "repository": {
     "type": "git",
