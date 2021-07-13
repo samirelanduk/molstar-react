@@ -5,12 +5,10 @@ import { Viewer } from "molstar/build/viewer/molstar";
 
 const Molstar = props => {
 
-  const { pdbId } = props;
+  const { pdbId, options } = props;
 
   useEffect(() => {
-    const viewer = new Viewer("molstar", {
-
-    });
+    const viewer = new Viewer("molstar", options || {});
     viewer.loadStructureFromUrl(`https://files.rcsb.org/view/${pdbId}.cif`);
   })
 
@@ -20,7 +18,8 @@ const Molstar = props => {
 };
 
 Molstar.propTypes = {
-  pdbId: PropTypes.string.isRequired
+  pdbId: PropTypes.string.isRequired,
+  options: PropTypes.object
 };
 
 export default Molstar;
