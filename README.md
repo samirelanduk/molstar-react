@@ -13,7 +13,7 @@ A react component for adding the [Molstar Macromolecular Visualiser](https://git
 
 The Viewer is a built-in, full page interface for using Molstar. It comes with a complete set of options for loading files, changing the view, etc. If you don't need a great deal of customisation, it is the most straightforward way to use Molstar.
 
-(It is also, for the moment, the only way using molstar-react - more customisations are coming soon.)
+(It is also, for the moment, the only way of using molstar-react - more customisations are coming soon.)
 
 To use:
 
