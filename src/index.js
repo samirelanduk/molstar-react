@@ -1,3 +1,3 @@
 
-import Molstar from "./Molstar.jsx";
-export default Molstar;
+import MolstarViewer from "./MolstarViewer.jsx";
+export default MolstarViewer;
