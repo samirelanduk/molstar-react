@@ -2,9 +2,17 @@
 
 A react component for adding the [Molstar Macromolecular Visualiser](https://github.com/molstar/molstar) to your app.
 
+## Installation
+
+With npm:
+
+```bash
+npm install molstar-react
+```
+
 ## The Molstar Viewer
 
-The Viewer is a built-in, full page interface for using Molstar. It comes with a complete set of options for loading files, customising the view, etc. If you don't need a great deal of customisation, it is the most straightforward way to use Molstar.
+The Viewer is a built-in, full page interface for using Molstar. It comes with a complete set of options for loading files, changing the view, etc. If you don't need a great deal of customisation, it is the most straightforward way to use Molstar.
 
 (It is also, for the moment, the only way using molstar-react - more customisations are coming soon.)
 
@@ -46,7 +54,7 @@ The initial settings and state of the viewer are set using an options object, wh
 - `collapseLeftPanel` - minimise the state tree on the left, but make it togglable (default `false`).
 - `layoutShowLog` - show the event log on the bottom (default `true`).
 - `layoutShowControls` - show controls around the edges (combination of above, default `true`).
-- `pdbProvider` - where PDBs will be downloaded from
+- `pdbProvider` - where PDBs will be downloaded from (default `"pdbe"`).
 
 ### Example
 
