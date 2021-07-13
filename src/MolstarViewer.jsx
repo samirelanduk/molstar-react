@@ -9,7 +9,7 @@ const MolstarViewer = props => {
 
   useEffect(() => {
     const viewer = new Viewer("molstarViewer", options || {});
-    viewer.loadPdb(pdbId);
+    if (pdbId) viewer.loadPdb(pdbId);
   })
 
   return (
@@ -18,7 +18,7 @@ const MolstarViewer = props => {
 };
 
 MolstarViewer.propTypes = {
-  pdbId: PropTypes.string.isRequired,
+  pdbId: PropTypes.string,
   options: PropTypes.object
 };
 
