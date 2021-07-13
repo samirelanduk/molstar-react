@@ -5,11 +5,12 @@ import { Viewer } from "molstar/build/viewer/molstar";
 
 const MolstarViewer = props => {
 
-  const { pdbId, options } = props;
+  const { pdbId, url, options } = props;
 
   useEffect(() => {
     const viewer = new Viewer("molstarViewer", options || {});
     if (pdbId) viewer.loadPdb(pdbId);
+    if (url) viewer.loadStructureFromUrl(url);
   })
 
   return (
@@ -19,6 +20,7 @@ const MolstarViewer = props => {
 
 MolstarViewer.propTypes = {
   pdbId: PropTypes.string,
+  url: PropTypes.string,
   options: PropTypes.object
 };
 
