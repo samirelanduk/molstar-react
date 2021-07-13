@@ -1,14 +1,13 @@
 # Molstar React
 
+[![Npm Version](https://img.shields.io/npm/v/molstar-react.svg)][npm_url]
+[![downloads](https://img.shields.io/npm/dt/molstar-react.svg)][npm_url]
+[![license](https://img.shields.io/npm/l/molstar-react.svg)][npm_url]
+[![Twitter Follow](https://img.shields.io/twitter/follow/samirelanduk)](https://twitter.com/samirelanduk)
+
+[npm_url]: https://www.npmjs.org/package/molstar-react
+
 A react component for adding the [Molstar Macromolecular Visualiser](https://github.com/molstar/molstar) to your app.
-
-## Installation
-
-With npm:
-
-```bash
-npm install molstar-react
-```
 
 ## The Molstar Viewer
 
