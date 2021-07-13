@@ -9,6 +9,14 @@
 
 A react component for adding the [Molstar Macromolecular Visualiser](https://github.com/molstar/molstar) to your app.
 
+## Installation
+
+With npm:
+
+```bash
+npm install molstar-react
+```
+
 ## The Molstar Viewer
 
 The Viewer is a built-in, full page interface for using Molstar. It comes with a complete set of options for loading files, changing the view, etc. If you don't need a great deal of customisation, it is the most straightforward way to use Molstar.
