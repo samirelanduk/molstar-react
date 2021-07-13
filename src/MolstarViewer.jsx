@@ -9,7 +9,7 @@ const MolstarViewer = props => {
 
   useEffect(() => {
     const viewer = new Viewer("molstarViewer", options || {});
-    viewer.loadStructureFromUrl(`https://files.rcsb.org/view/${pdbId}.cif`);
+    viewer.loadPdb(pdbId);
   })
 
   return (
