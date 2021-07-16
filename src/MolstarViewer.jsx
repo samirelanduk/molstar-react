@@ -13,6 +13,7 @@ const MolstarViewer = props => {
     viewer.current = new Viewer(viewerElement.current, options || {});
     if (pdbId) viewer.current.loadPdb(pdbId);
     if (url) viewer.current.loadStructureFromUrl(url);
+    return () => viewer.current = null;
   }, [])
 
   return (
