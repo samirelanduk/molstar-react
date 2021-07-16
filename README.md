@@ -88,6 +88,13 @@ export default App;
 
 ## Changelog
 
+### Release 0.2.1
+
+*16 July 2021*
+
+- Fixed re-render initialising.
+- Component now disposes of viewer when removed.
+
 ### Release 0.2.0
 
 *13 July 2021*
