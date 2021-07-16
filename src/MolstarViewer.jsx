@@ -7,12 +7,13 @@ const MolstarViewer = props => {
 
   const { pdbId, url, options } = props;
   const viewerElement = useRef(null);
+  const viewer = useRef(null);
 
   useEffect(() => {
-    const viewer = new Viewer(viewerElement.current, options || {});
-    if (pdbId) viewer.loadPdb(pdbId);
-    if (url) viewer.loadStructureFromUrl(url);
-  })
+    viewer.current = new Viewer(viewerElement.current, options || {});
+    if (pdbId) viewer.current.loadPdb(pdbId);
+    if (url) viewer.current.loadStructureFromUrl(url);
+  }, [])
 
   return (
     <div ref={viewerElement} />
