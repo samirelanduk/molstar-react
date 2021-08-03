@@ -90,6 +90,8 @@ export default App;
 
 ### Release 0.3.0
 
+*3 August 2021*
+
 - Added ability to control dimensions rather than always being full-screen.
 - Removed distinction between viewer and non-viewer.
 
