@@ -10,7 +10,9 @@ const Molstar = props => {
   const viewer = useRef(null);
 
   useEffect(() => {
-    viewer.current = new Viewer(viewerElement.current, options || {});
+    const mandatoryOptions = dimensions ? {layoutIsExpanded: false} : {};
+    const viewerOptions = {...(options || {}), ...mandatoryOptions};
+    viewer.current = new Viewer(viewerElement.current, viewerOptions);
     if (pdbId) viewer.current.loadPdb(pdbId);
     if (url) viewer.current.loadStructureFromUrl(url);
     return () => viewer.current = null;
