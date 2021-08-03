@@ -1,40 +1,30 @@
 import React, { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
-import { createPluginAsync } from "molstar/lib/mol-plugin-ui/index";
-import { DefaultPluginUISpec } from "molstar/lib/mol-plugin-ui/spec";
-
+import "molstar/build/viewer/molstar.css";
+import { Viewer } from "molstar/build/viewer/molstar";
 
 const Molstar = props => {
 
-  const parent = useRef(null);
-  const plugin = useRef(null);
+  const { pdbId, url, options } = props;
+  const viewerElement = useRef(null);
+  const viewer = useRef(null);
 
   useEffect(() => {
-    const defaultSpec = DefaultPluginUISpec();
-    const init = async () => {
-      plugin.current = await createPluginAsync(parent.current, {
-        ...defaultSpec,
-        layout: {
-            initial: {
-                isExpanded: false,
-                showControls: false
-            },
-        },
-      });
-    }
-    init();
+    viewer.current = new Viewer(viewerElement.current, options || {});
+    if (pdbId) viewer.current.loadPdb(pdbId);
+    if (url) viewer.current.loadStructureFromUrl(url);
+    return () => viewer.current = null;
   }, [])
 
   return (
-    <div
-      ref={parent}
-      style={{ width: 640, height: 480, position: "absolute", overflow: "hidden" }}
-    />
+    <div ref={viewerElement} />
   );
 };
 
 Molstar.propTypes = {
-  
+  pdbId: PropTypes.string,
+  url: PropTypes.string,
+  options: PropTypes.object
 };
 
 export default Molstar;
