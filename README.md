@@ -17,22 +17,18 @@ With npm:
 npm install molstar-react
 ```
 
-## The Molstar Viewer
-
-The Viewer is a built-in, full page interface for using Molstar. It comes with a complete set of options for loading files, changing the view, etc. If you don't need a great deal of customisation, it is the most straightforward way to use Molstar.
-
-(It is also, for the moment, the only way of using molstar-react - more customisations are coming soon.)
+## Basic Use
 
 To use:
 
 ```jsx
-import MolstarViewer from "molstar-react";
+import Molstar from "molstar-react";
 
 export const App = () => {
 
   return (
     <div>
-      <MolstarViewer />
+      <Molstar />
     </div>
   );
 }
@@ -63,10 +59,14 @@ The initial settings and state of the viewer are set using an options object, wh
 - `layoutShowControls` - show controls around the edges (combination of above, default `true`).
 - `pdbProvider` - where PDBs will be downloaded from (default `"pdbe"`).
 
+#### `dimensions`
+
+By default the molstar viewer will take up the full screen. If you want it to act as just a normal div, you can provide a `[width, height]` array instead.
+
 ### Example
 
 ```jsx
-import MolstarViewer from "molstar-react";
+import Molstar from "molstar-react";
 
 export const App = () => {
   
@@ -78,7 +78,7 @@ export const App = () => {
 
   return (
     <div>
-      <MolstarViewer pdbId="1XDA" options={options} />
+      <Molstar pdbId="1XDA" options={options} dimensions={[800, 600]} />
     </div>
   );
 }
@@ -87,6 +87,11 @@ export default App;
 ```
 
 ## Changelog
+
+### Release 0.3.0
+
+- Added ability to control dimensions rather than always being full-screen.
+- Removed distinction between viewer and non-viewer.
 
 ### Release 0.2.1
 
