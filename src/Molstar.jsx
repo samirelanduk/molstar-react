@@ -18,7 +18,12 @@ const Molstar = props => {
     return () => plugin.current = null;
   }, [])
 
+  useEffect(async () => {
+    await loadStructure(pdbId, url, plugin.current);
+  }, [pdbId, url])
+
   const loadStructure = async (pdbId, url, plugin) => {
+    plugin.clear();
     const structureUrl = url ? url : pdbId ? `https://files.rcsb.org/view/${pdbId}.cif` : null;
     if (!structureUrl) return;
     const data = await plugin.builders.data.download(
