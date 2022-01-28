@@ -29,10 +29,11 @@ const Molstar = props => {
     await plugin.builders.structure.hierarchy.applyPreset(traj, "default");
   }
 
-  if (!dimensions) return <div ref={pluginElement} />
+  const width = dimensions ? dimensions[0] : "100%";
+  const height = dimensions ? dimensions[1] : "100%";
 
   return (
-    <div ref={parentRef} style={{position: "relative", width: dimensions[0], height: dimensions[1]}}>
+    <div ref={parentRef} style={{position: "relative", width, height}}>
       <canvas
         ref={canvasRef}
         style={{position: "absolute", top: 0, left: 0, right: 0, bottom: 0}}
