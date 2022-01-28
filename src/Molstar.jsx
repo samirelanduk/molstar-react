@@ -1,34 +1,30 @@
 import React, { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
-import "molstar/build/viewer/molstar.css";
-import { Viewer } from "molstar/build/viewer/molstar";
+import { DefaultPluginSpec } from "molstar/lib/mol-plugin/spec";
+import { PluginContext  } from "molstar/lib/mol-plugin/context";
 
 const Molstar = props => {
 
   const { pdbId, url, dimensions, options } = props;
-  const viewerElement = useRef(null);
-  const viewer = useRef(null);
+  const parentRef = useRef(null);
+  const canvasRef = useRef(null);
+  const plugin = useRef(null);
 
-  useEffect(() => {
-    const mandatoryOptions = dimensions ? {layoutIsExpanded: false} : {};
-    const viewerOptions = {...(options || {}), ...mandatoryOptions};
-    viewer.current = new Viewer(viewerElement.current, viewerOptions);
-    if (pdbId) viewer.current.loadPdb(pdbId);
-    if (url) viewer.current.loadStructureFromUrl(url);
-    return () => viewer.current = null;
+  useEffect(async () => {
+    plugin.current = new PluginContext(DefaultPluginSpec());
+    plugin.current.initViewer(canvasRef.current, parentRef.current);
+    await plugin.current.init();
+    return () => plugin.current = null;
   }, [])
 
-  if (!dimensions) return <div ref={viewerElement} />
+  if (!dimensions) return <div ref={pluginElement} />
 
   return (
-    <div style={{
-      position: "relative",
-      width: dimensions[0], height: dimensions[1]
-    }}>
-      <div ref={viewerElement} style={{
-        position: "absolute",
-        width: dimensions[0], height: dimensions[1], left: 0, right: 0
-      }}/>
+    <div ref={parentRef} style={{position: "relative", width: dimensions[0], height: dimensions[1]}}>
+      <canvas
+        ref={canvasRef}
+        style={{position: "absolute", top: 0, left: 0, right: 0, bottom: 0}}
+      />
     </div>
   );
 };
