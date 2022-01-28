@@ -28,7 +28,7 @@ export const App = () => {
 
   return (
     <div>
-      <Molstar />
+      <Molstar pdbId="1LOL" />
     </div>
   );
 }
@@ -36,55 +36,25 @@ export const App = () => {
 export default App;
 ```
 
-This will render a blank, full page interface, from which you upload a file to view, or download using a PDB code.
+This will render a full page Molstar plugin, with the structure 1LOL loaded.
 
 ### Props
 
 #### `pdbId`
 
-You can pre-load an official PDB structure by supplying its 4 letter ID as a prop. By default these are downloaded from PDBe, but this can be customised using the Molstar options (see below).
+You can pre-load an official PDB structure by supplying its 4 letter ID as a prop.
 
 #### `url`
 
 You can also pre-load a structure by passing in the URL of the file - as long as it is a file type that Molstar supports.
 
-#### `options`
-
-The initial settings and state of the viewer are set using an options object, which has some defaults set by Molstar itself. Some useful options are:
-
-- `layoutShowSequence` - show the polymer sequences along the top (default `true`).
-- `layoutShowLeftPanel` - show the state tree on the left (default `true`).
-- `collapseLeftPanel` - minimise the state tree on the left, but make it togglable (default `false`).
-- `layoutShowLog` - show the event log on the bottom (default `true`).
-- `layoutShowControls` - show controls around the edges (combination of above, default `true`).
-- `pdbProvider` - where PDBs will be downloaded from (default `"pdbe"`).
-
 #### `dimensions`
 
-By default the molstar viewer will take up the full screen. If you want it to act as just a normal div, you can provide a `[width, height]` array instead.
+By default the molstar plugin will take up the full screen. If you want it to act as just a normal div, you can provide a `[width, height]` array instead.
 
-### Example
+#### `className`
 
-```jsx
-import Molstar from "molstar-react";
-
-export const App = () => {
-  
-  const options = {
-    pdbProvider: "rcsb",
-    layoutShowLog: false,
-    layoutShowSequence: false
-  }
-
-  return (
-    <div>
-      <Molstar pdbId="1XDA" options={options} dimensions={[800, 600]} />
-    </div>
-  );
-}
-
-export default App;
-```
+A class name to apply to the outer parent element.
 
 ## Changelog
 
