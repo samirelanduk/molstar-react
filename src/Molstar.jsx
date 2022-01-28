@@ -5,7 +5,7 @@ import { PluginContext  } from "molstar/lib/mol-plugin/context";
 
 const Molstar = props => {
 
-  const { pdbId, url, dimensions, options } = props;
+  const { pdbId, url, dimensions, className } = props;
   const parentRef = useRef(null);
   const canvasRef = useRef(null);
   const plugin = useRef(null);
@@ -33,7 +33,7 @@ const Molstar = props => {
   const height = dimensions ? dimensions[1] : "100%";
 
   return (
-    <div ref={parentRef} style={{position: "relative", width, height}}>
+    <div ref={parentRef} style={{position: "relative", width, height}} className={className || ""}>
       <canvas
         ref={canvasRef}
         style={{position: "absolute", top: 0, left: 0, right: 0, bottom: 0}}
@@ -46,7 +46,7 @@ Molstar.propTypes = {
   pdbId: PropTypes.string,
   url: PropTypes.string,
   dimensions: PropTypes.array,
-  options: PropTypes.object
+  className: PropTypes.string
 };
 
 export default Molstar;
