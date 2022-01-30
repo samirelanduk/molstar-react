@@ -56,11 +56,11 @@ By default the molstar plugin will take up the full screen. If you want it to ac
 
 A class name to apply to the outer parent element.
 
-### `useInterface`
+#### `useInterface`
 
 If `true`, the full Molstar interface will be used around the core canvas.
 
-### `showControls`
+#### `showControls`
 
 If `true` and `useInterface` is `true`, the controls will be shown around the sides of the interface. Only recommended for large sizes.
 
