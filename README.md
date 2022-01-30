@@ -68,6 +68,13 @@ If `true` and `useInterface` is `true`, the controls will be shown around the si
 
 ### Release 0.3.0
 
+*29 January 2022*
+
+- Now uses Plugin and PluginUI directly instead of Viewer.
+- Class name prop.
+- Plugin now clears first when pdbID/URL prop changes.
+
+
 *3 August 2021*
 
 - Added ability to control dimensions rather than always being full-screen.
