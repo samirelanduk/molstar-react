@@ -8,14 +8,22 @@ import "molstar/build/viewer/molstar.css";
 
 const Molstar = props => {
 
-  const { useInterface, pdbId, url, dimensions, className } = props;
+  const { useInterface, pdbId, url, dimensions, className, showControls } = props;
   const parentRef = useRef(null);
   const canvasRef = useRef(null);
   const plugin = useRef(null);
 
   useEffect(async () => {
     if (useInterface) {
-      plugin.current = await createPluginAsync(parentRef.current, DefaultPluginUISpec());
+      const spec = DefaultPluginUISpec();
+      spec.layout = {
+        initial: {
+          isExpanded: false,
+          controlsDisplay: "reactive",
+          showControls,
+        }
+      };
+      plugin.current = await createPluginAsync(parentRef.current, spec);
     } else {
       plugin.current = new PluginContext(DefaultPluginSpec());
       plugin.current.initViewer(canvasRef.current, parentRef.current);
@@ -30,15 +38,17 @@ const Molstar = props => {
   }, [pdbId, url])
 
   const loadStructure = async (pdbId, url, plugin) => {
-    plugin.clear();
-    const structureUrl = url ? url : pdbId ? `https://files.rcsb.org/view/${pdbId}.cif` : null;
-    if (!structureUrl) return;
-    const data = await plugin.builders.data.download(
-      { url: structureUrl }, {state: {isGhost: true}}
-    );
-    const extension = structureUrl.split(".").pop().replace("cif", "mmcif");
-    const traj = await plugin.builders.structure.parseTrajectory(data, extension);
-    await plugin.builders.structure.hierarchy.applyPreset(traj, "default");
+    if (plugin) {
+      plugin.clear();
+      const structureUrl = url ? url : pdbId ? `https://files.rcsb.org/view/${pdbId}.cif` : null;
+      if (!structureUrl) return;
+      const data = await plugin.builders.data.download(
+        { url: structureUrl }, {state: {isGhost: true}}
+      );
+      const extension = structureUrl.split(".").pop().replace("cif", "mmcif");
+      const traj = await plugin.builders.structure.parseTrajectory(data, extension);
+      await plugin.builders.structure.hierarchy.applyPreset(traj, "default");
+    }
   }
 
   const width = dimensions ? dimensions[0] : "100%";
@@ -46,7 +56,7 @@ const Molstar = props => {
 
   if (useInterface) {
     return (
-      <div style={{position: "relative", width, height, overflow: "hidden"}}>
+      <div style={{position: "absolute", width, height, overflow: "hidden"}}>
         <div ref={parentRef} style={{position: "absolute", left: 0, top: 0, right: 0, bottom: 0}} />
       </div>
     )
