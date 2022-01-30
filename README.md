@@ -66,7 +66,7 @@ If `true` and `useInterface` is `true`, the controls will be shown around the si
 
 ## Changelog
 
-### Release 0.3.0
+### Release 0.4.0
 
 *29 January 2022*
 
@@ -74,6 +74,7 @@ If `true` and `useInterface` is `true`, the controls will be shown around the si
 - Class name prop.
 - Plugin now clears first when pdbID/URL prop changes.
 
+### Release 0.3.0
 
 *3 August 2021*
 
