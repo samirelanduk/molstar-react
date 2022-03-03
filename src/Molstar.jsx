@@ -5,6 +5,8 @@ import { DefaultPluginUISpec } from "molstar/lib/mol-plugin-ui/spec";
 import { createPluginAsync } from "molstar/lib/mol-plugin-ui/index";
 import { PluginContext } from "molstar/lib/mol-plugin/context";
 import "molstar/build/viewer/molstar.css";
+import { ParamDefinition } from "molstar/lib/mol-util/param-definition";
+import { CameraHelperParams } from "molstar/lib/mol-canvas3d/helper/camera-helper";
 
 const Molstar = props => {
 
@@ -13,6 +15,7 @@ const Molstar = props => {
   const canvasRef = useRef(null);
   const plugin = useRef(null);
 
+  
   useEffect(() => {
     (async () => {
       if (useInterface) {
@@ -40,9 +43,11 @@ const Molstar = props => {
     return () => plugin.current = null;
   }, [])
 
+
   useEffect(() => {
     loadStructure(pdbId, url, file, plugin.current);
   }, [pdbId, url, file])
+
 
   useEffect(() => {
     if (plugin.current) {
@@ -51,10 +56,13 @@ const Molstar = props => {
           name: "off", params: {}
         } } } })
       } else {
-        // TODO
+        plugin.current.canvas3d?.setProps({ camera: { helper: {
+          axes: ParamDefinition.getDefaultValues(CameraHelperParams).axes
+        } } })
       }
     }
   }, [showAxes]) 
+
 
   const loadStructure = async (pdbId, url, file, plugin) => {
     if (plugin) {
