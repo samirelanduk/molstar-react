@@ -8,7 +8,7 @@ import "molstar/build/viewer/molstar.css";
 
 const Molstar = props => {
 
-  const { useInterface, pdbId, url, file, dimensions, className, showControls } = props;
+  const { useInterface, pdbId, url, file, dimensions, className, showControls, showAxes } = props;
   const parentRef = useRef(null);
   const canvasRef = useRef(null);
   const plugin = useRef(null);
@@ -29,6 +29,11 @@ const Molstar = props => {
       plugin.current.initViewer(canvasRef.current, parentRef.current);
       await plugin.current.init();
     }
+    if (!showAxes) {
+      plugin.current.canvas3d?.setProps({ camera: { helper: { axes: {
+        name: "off", params: {}
+      } } } });
+    }
     await loadStructure(pdbId, url, file, plugin.current);
     return () => plugin.current = null;
   }, [])
@@ -37,12 +42,24 @@ const Molstar = props => {
     await loadStructure(pdbId, url, file, plugin.current);
   }, [pdbId, url, file])
 
+  useEffect(() => {
+    if (plugin.current) {
+      if (!showAxes) {
+        plugin.current.canvas3d?.setProps({ camera: { helper: { axes: {
+          name: "off", params: {}
+        } } } })
+      } else {
+        // TODO
+      }
+    }
+  }, [showAxes]) 
+
   const loadStructure = async (pdbId, url, file, plugin) => {
     if (plugin) {
       plugin.clear();
       if (file) {
         const data = await plugin.builders.data.rawData({
-          data: file.filestring /* string or number[] */,
+          data: file.filestring
         });
         const traj = await plugin.builders.structure.parseTrajectory(data, file.type);
         await plugin.builders.structure.hierarchy.applyPreset(traj, "default");
@@ -85,10 +102,13 @@ const Molstar = props => {
 };
 
 Molstar.propTypes = {
-  interface: PropTypes.bool,
+  useInterface: PropTypes.bool,
   pdbId: PropTypes.string,
   url: PropTypes.string,
+  file: PropTypes.object,
   dimensions: PropTypes.array,
+  showControls: PropTypes.bool,
+  showAxes: PropTypes.bool,
   className: PropTypes.string
 };
 
