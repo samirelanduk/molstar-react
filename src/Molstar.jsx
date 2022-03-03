@@ -13,33 +13,35 @@ const Molstar = props => {
   const canvasRef = useRef(null);
   const plugin = useRef(null);
 
-  useEffect(async () => {
-    if (useInterface) {
-      const spec = DefaultPluginUISpec();
-      spec.layout = {
-        initial: {
-          isExpanded: false,
-          controlsDisplay: "reactive",
-          showControls,
-        }
-      };
-      plugin.current = await createPluginAsync(parentRef.current, spec);
-    } else {
-      plugin.current = new PluginContext(DefaultPluginSpec());
-      plugin.current.initViewer(canvasRef.current, parentRef.current);
-      await plugin.current.init();
-    }
-    if (!showAxes) {
-      plugin.current.canvas3d?.setProps({ camera: { helper: { axes: {
-        name: "off", params: {}
-      } } } });
-    }
-    await loadStructure(pdbId, url, file, plugin.current);
+  useEffect(() => {
+    (async () => {
+      if (useInterface) {
+        const spec = DefaultPluginUISpec();
+        spec.layout = {
+          initial: {
+            isExpanded: false,
+            controlsDisplay: "reactive",
+            showControls,
+          }
+        };
+        plugin.current = await createPluginAsync(parentRef.current, spec);
+      } else {
+        plugin.current = new PluginContext(DefaultPluginSpec());
+        plugin.current.initViewer(canvasRef.current, parentRef.current);
+        await plugin.current.init();
+      }
+      if (!showAxes) {
+        plugin.current.canvas3d?.setProps({ camera: { helper: { axes: {
+          name: "off", params: {}
+        } } } });
+      }
+      await loadStructure(pdbId, url, file, plugin.current);
+    })();
     return () => plugin.current = null;
   }, [])
 
-  useEffect(async () => {
-    await loadStructure(pdbId, url, file, plugin.current);
+  useEffect(() => {
+    loadStructure(pdbId, url, file, plugin.current);
   }, [pdbId, url, file])
 
   useEffect(() => {
