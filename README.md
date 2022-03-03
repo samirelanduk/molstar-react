@@ -48,6 +48,10 @@ You can pre-load an official PDB structure by supplying its 4 letter ID as a pro
 
 You can also pre-load a structure by passing in the URL of the file - as long as it is a file type that Molstar supports.
 
+#### `file`
+
+Thirdly, you can provide a file object, which should have a `filestring` property and a `type` property (`"pdb"`, `"mmcif"` etc. - anything that molstar itself natively supports).
+
 #### `dimensions`
 
 By default the molstar plugin will take up the full screen. If you want it to act as just a normal div, you can provide a `[width, height]` array instead.
