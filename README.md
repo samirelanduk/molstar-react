@@ -74,6 +74,13 @@ If `true`, axes will appear in the bottom left corner.
 
 ## Changelog
 
+### Release 0.5.0
+
+*4 March 2022*
+
+- Added option to provide filestring directly.
+- Added option to toggle axes in bottom left corner.
+
 ### Release 0.4.0
 
 *29 January 2022*
