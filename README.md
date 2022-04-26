@@ -74,6 +74,12 @@ If `true`, axes will appear in the bottom left corner.
 
 ## Changelog
 
+### Release 0.5.1
+
+*26 April 2022*
+
+- Fixed issue where `?key=value` params in URLs would break extension parsing.
+
 ### Release 0.5.0
 
 *4 March 2022*
