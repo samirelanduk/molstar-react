@@ -79,7 +79,9 @@ const Molstar = props => {
         const data = await plugin.builders.data.download(
           { url: structureUrl }, {state: {isGhost: true}}
         );
-        const extension = structureUrl.split(".").pop().replace("cif", "mmcif");
+        let extension = structureUrl.split(".").pop().replace("cif", "mmcif");
+        if (extension.includes("?"))
+          extension = extension.substring(0, extension.indexOf("?"));
         const traj = await plugin.builders.structure.parseTrajectory(data, extension);
         await plugin.builders.structure.hierarchy.applyPreset(traj, "default");
       }
