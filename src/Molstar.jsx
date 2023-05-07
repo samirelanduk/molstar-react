@@ -45,7 +45,9 @@ const Molstar = props => {
 
 
   useEffect(() => {
-    async() => await(loadStructure(pdbId, url, file, plugin.current));
+    (async() => {
+      await loadStructure(pdbId, url, file, plugin.current);
+    })();
   }, [pdbId, url, file])
 
 
