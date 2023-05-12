@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import { DefaultPluginSpec } from "molstar/lib/mol-plugin/spec";
 import { DefaultPluginUISpec } from "molstar/lib/mol-plugin-ui/spec";
@@ -14,7 +14,7 @@ const Molstar = props => {
   const parentRef = useRef(null);
   const canvasRef = useRef(null);
   const plugin = useRef(null);
-
+  const [initialized, setInitialized] = useState(false);
   
   useEffect(() => {
     (async () => {
@@ -39,13 +39,17 @@ const Molstar = props => {
         } } } });
       }
       await loadStructure(pdbId, url, file, plugin.current);
+      setInitialized(true);
     })();
     return () => plugin.current = null;
   }, [])
 
 
   useEffect(() => {
-    loadStructure(pdbId, url, file, plugin.current);
+    if (!initialized) return;
+    (async() => {
+      await loadStructure(pdbId, url, file, plugin.current);
+    })();
   }, [pdbId, url, file])
 
 
