@@ -74,6 +74,13 @@ If `true`, axes will appear in the bottom left corner.
 
 ## Changelog
 
+### Release 0.5.2
+
+*13 May 2024*
+
+- Fixed 'Invalid data cell' issue.
+- Fixed duplicate-fetch issue.
+
 ### Release 0.5.1
 
 *26 April 2022*

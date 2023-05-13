@@ -1,6 +1,6 @@
 {
   "name": "molstar-react",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Molstar as a react component",
   "main": "dist/index.js",
   "files": ["dist"],
