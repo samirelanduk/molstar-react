@@ -7,7 +7,7 @@
 
 [npm_url]: https://www.npmjs.org/package/molstar-react
 
-A react component for adding the [Molstar Macromolecular Visualiser](https://github.com/molstar/molstar) to your app.
+A React component for adding the [Molstar Macromolecular Visualizer](https://github.com/molstar/molstar) to your app.
 
 ## Installation
 
@@ -42,7 +42,7 @@ This will render a full page Molstar plugin, with the structure 1LOL loaded.
 
 #### `pdbId`
 
-You can pre-load an official PDB structure by supplying its 4 letter ID as a prop.
+You can pre-load an official PDB structure by supplying its 4-letter ID as a prop.
 
 #### `url`
 
@@ -50,11 +50,11 @@ You can also pre-load a structure by passing in the URL of the file - as long as
 
 #### `file`
 
-Thirdly, you can provide a file object, which should have a `filestring` property and a `type` property (`"pdb"`, `"mmcif"` etc. - anything that molstar itself natively supports).
+Thirdly, you can provide a file object, which should have a `filestring` property and a `type` property (`"pdb"`, `"mmcif"` etc. - anything that Molstar itself natively supports).
 
 #### `dimensions`
 
-By default the molstar plugin will take up the full screen. If you want it to act as just a normal div, you can provide a `[width, height]` array instead.
+By default the Molstar plugin will take up the full screen. If you want it to act as just a normal `div`, you can provide a `[width, height]` array instead.
 
 #### `className`
 
@@ -79,7 +79,7 @@ If `true`, axes will appear in the bottom left corner.
 *13 May 2023*
 
 - Fixed 'Invalid data cell' issue.
-- Fixed duplicate-fetch issue.
+- Fixed duplicate fetch issue.
 
 ### Release 0.5.1
 
@@ -100,7 +100,7 @@ If `true`, axes will appear in the bottom left corner.
 
 - Now uses Plugin and PluginUI directly instead of Viewer.
 - Class name prop.
-- Plugin now clears first when pdbID/URL prop changes.
+- Plugin now clears first when pdbId/URL prop changes.
 
 ### Release 0.3.0
 
